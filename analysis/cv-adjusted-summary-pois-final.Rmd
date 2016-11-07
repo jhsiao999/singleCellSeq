@@ -204,7 +204,7 @@ sum(drop_out_significance < quantile(drop_out_significance, prob = seq(0,1,.1))[
 #### first panel <- mean-cv relationship
 tiff(file = "figure/cv-adjusted-summary-pois-final.Rmd/Fig05-01.tiff", 
      res = 300, units = "in", height = 3.7, width = 4,
-     compression = "zip")
+     compression = "none")
 all_cv <- matrixStats::rowSds(2^molecules_final_subset)/rowMeans(2^molecules_final_subset)
 all_mn <- rowMeans(2^molecules_final_subset)
 plot(y = all_cv,
@@ -241,13 +241,13 @@ points(y = expressed_cv_subset$all$expr_cv,
                      include.lowest = TRUE)], 
        cex = .6, pch = 16)
 # add labels to the plot on the right
-points(x = rep(15,10), y = seq(1,4,length.out = 10), 
+points(x = rep(14.7,10), y = seq(1,4,length.out = 10), 
      pch = 15, cex = .7, 
      col = (RColorBrewer::brewer.pal(10, "RdYlBu")))
 text(labels = rev( levels(cut(drop_out$NA19098, breaks = seq(0, 1, by = .1),
                      include.lowest = TRUE))) ,
-     y = seq(1,4,length.out = 10), x = 15.3, cex = .6, adj = 0)
-text(labels = "drop-out rate", x = 15.5, y = 4.3, cex = .7)
+     y = seq(1,4,length.out = 10), x = 15, cex = .8, adj = 0)
+text(labels = "drop-out rate", x = 15.7, y = 4.3, cex = .8)
 dev.off()
 
 

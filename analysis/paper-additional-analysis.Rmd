@@ -504,6 +504,9 @@ Boxplot displaying proportion of variance explained due to individual, batch and
 
 ```{r, fig.height=6, fig.width=12}
 load("../data/blme-variance.rda")
+tiff(file = "figure/paper-additional-analysis.Rmd/FigS4-variancecomponent.tiff", 
+     res = 300, units = "in", height = 3.7, width = 7,
+     compression = "none")
 theme_set(theme_bw(base_size = 12))
 theme_update(panel.grid.minor.x = element_blank(),
              panel.grid.minor.y = element_blank(),
@@ -524,9 +527,14 @@ cowplot::plot_grid(
               y = proportion)) +
     geom_violin(alpha = .5) +
     geom_boxplot(alpha = .01, width = 0.1, 
-                 position = position_dodge(width = 0.9)) + 
+                 position = position_dodge(width = 0.9), 
+                 outlier.size = .4) + 
     ylim(0,1) + xlab("") + ylab("Proportion of variance explained") +
-    labs( title = "The proportion of variance in single cell gene expression\nattributed to individual and C1 batch"),
+    labs( title = "The proportion of variance in single cell gene expression\nattributed to individual and C1 batch") +
+    theme(plot.title = element_text(size = 8),
+          axis.text.x = element_text(size = 8),
+          axis.text.y = element_text(size = 8),
+          axis.title.y = element_text(size = 8)),
   ggplot(
     data.frame(proportion = 
                  c(prop_list$ercc$prop_ind, 
@@ -541,11 +549,16 @@ cowplot::plot_grid(
               y = proportion)) +
     geom_violin(alpha = .5) +
     geom_boxplot(alpha = .01, width = 0.1, 
-                 position = position_dodge(width = 0.9)) + 
+                 position = position_dodge(width = 0.9),
+                 outlier.size = .4) + 
     ylim(0,1) + xlab("") + ylab("Proportion of variance explained") +
-    labs( title = "The proportion of variance in single cell ERCC controls\nattributed to individual and C1 batch"),
-  labels = c("A", "B") )
-
+    labs( title = "The proportion of variance in single cell ERCC controls\nattributed to individual and C1 batch") +
+    theme(plot.title = element_text(size = 8),
+          axis.text.x = element_text(size = 8),
+          axis.text.y = element_text(size = 8),
+          axis.title.y = element_text(size = 8)),
+  labels = c("a", "b") )
+dev.off()
 ```
 
 
